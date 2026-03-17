@@ -10,24 +10,45 @@
             margin: 0; padding: 20px; min-height: 100vh;
             display: flex; justify-content: center; align-items: center;
             background: linear-gradient(135deg, #ce9ffc 0%, #7367f0 100%);
-            font-family: 'Poppins', sans-serif; overflow-x: hidden;
+            font-family: 'Poppins', sans-serif; 
+            overflow: hidden; /* Scrollbar hatane ke liye */
         }
-        .heart { position: absolute; bottom: -50px; animation: floatUp 4s infinite linear; z-index: 1; opacity: 0.7; }
-        @keyframes floatUp { 0% { transform: translateY(0) scale(0.8); opacity: 0; } 100% { transform: translateY(-110vh) scale(1.5); opacity: 0; } }
+
+        /* Fixed Heart Styling */
+        .heart { 
+            position: fixed; /* Absolute ki jagah fixed behtar hai background ke liye */
+            bottom: -50px; 
+            animation: floatUp 4s infinite linear; 
+            z-index: 1; 
+            opacity: 0.7; 
+            pointer-events: none; /* Mouse touch block na kare */
+        }
+
+        @keyframes floatUp { 
+            0% { transform: translateY(0) scale(0.8); opacity: 0; } 
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; } 
+        }
+
         .letter-container {
-            background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 20px;
-            max-width: 500px; width: 90%; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            position: relative; z-index: 10; border-left: 8px solid #ff4d6d;
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 40px; 
+            border-radius: 20px;
+            max-width: 500px; 
+            width: 90%; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            position: relative; 
+            z-index: 10; 
+            border-left: 8px solid #ff4d6d;
         }
         h2 { font-family: 'Pacifico', cursive; color: #7367f0; }
     </style>
 </head>
 <body>
     <audio id="bgMusic" autoplay loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
+        <source src="music2.mp3" type="audio/mpeg"> </audio>
 
-    <div id="bg-hearts"></div>
+    <div id="bg-hearts" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
 
     <div class="letter-container">
         <h2>Meri Rasmalai,</h2>
@@ -38,11 +59,10 @@
     </div>
 
     <script>
-        // Music play karne ka jugaad agar browser block kare
         window.addEventListener('load', () => {
             const audio = document.getElementById('bgMusic');
             audio.play().catch(() => {
-                console.log("Autoplay blocked, waiting for interaction");
+                console.log("Autoplay blocked");
             });
         });
 
@@ -52,6 +72,7 @@
             heart.className = 'heart';
             heart.innerHTML = '💗';
             heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px'; // Random size
             heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
             container.appendChild(heart);
             setTimeout(() => heart.remove(), 4000);
