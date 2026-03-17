@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Queen 👑</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ce9ffc 0%, #7367f0 100%);
+            font-family: 'Poppins', sans-serif; text-align: center; color: white; padding: 20px; overflow-x: hidden;
+        }
+        .gallery img {
+            width: 250px; height: 250px; object-fit: cover; border: 6px solid white;
+            border-radius: 20px; margin: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 10; position: relative;
+        }
+        .shayari {
+            font-size: 1.3rem; margin: 20px auto; max-width: 600px; line-height: 1.6;
+            background: rgba(0,0,0,0.2); padding: 25px; border-radius: 15px; z-index: 10; position: relative;
+        }
+        .next-btn {
+            background: #ff4d6d; color: white; padding: 15px 30px; border-radius: 50px;
+            font-weight: bold; cursor: pointer; border: none; z-index: 10; position: relative; font-size: 1.1rem;
+        }
+        .heart { position: absolute; bottom: -50px; animation: floatUp 4s infinite linear; z-index: 1; opacity: 0.6; }
+        @keyframes floatUp { 0% { transform: translateY(0); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-110vh); opacity: 0; } }
+        .tulip-pop { position: fixed; bottom: -50px; font-size: 2.5rem; animation: popUp 2.5s forwards; z-index: 100; }
+        @keyframes popUp { 0% { transform: translateY(0); } 100% { transform: translateY(-800px) translateX(var(--d)); opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div id="bg-hearts"></div>
+    <audio id="loveAudio" loop autoplay><source src="music.mp3" type="audio/mpeg"></audio>
+
+    <div class="gallery">
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+    </div>
+
+    <div class="shayari">
+        "Chehre par lavender sa nayaab noor hai,<br>
+        Tumhari saadgi mein ek alag hi suroor hai.<br>
+        Khuda bhi dekhta hoga tumhe fursat se,<br>
+        Tabhi toh tumhari aankhon mein itna guroor hai." ✨
+    </div>
+
+    <button class="next-btn" onclick="blastTulips()">Click to see Prem patra from your Tulip 🌷</button>
+
+    <script>
+        setInterval(() => {
+            const h = document.createElement('div');
+            h.className = 'heart'; h.innerHTML = '💜';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            document.getElementById('bg-hearts').appendChild(h);
+            setTimeout(() => h.remove(), 4000);
+        }, 200);
+
+        function blastTulips() {
+            const emojis = ['💝','🌷'];
+            for(let i=0; i<40; i++) {
+                setTimeout(() => {
+                    const t = document.createElement('div');
+                    t.className = 'tulip-pop';
+                    t.innerText = emojis[Math.floor(Math.random()*2)];
+                    const isLeft = Math.random() > 0.5;
+                    t.style.left = isLeft ? (Math.random() * 20) + 'vw' : (Math.random() * 20 + 80) + 'vw';
+                    t.style.setProperty('--d', (isLeft ? 150 : -150) + 'px');
+                    document.body.appendChild(t);
+                    setTimeout(() => t.remove(), 2500);
+                }, i * 60);
+            }
+            setTimeout(() => { window.location.href = 'page3.html'; }, 3000);
+        }
+    </script>
+</body>
+</html>

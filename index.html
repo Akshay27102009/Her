@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Proposal 💜</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0; height: 100vh; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #ce9ffc 0%, #7367f0 100%);
+            font-family: 'Poppins', sans-serif; overflow: hidden; text-align: center; color: white;
+        }
+        h1 { font-family: 'Pacifico', cursive; font-size: 3.5rem; z-index: 10; text-shadow: 3px 3px 10px rgba(0,0,0,0.2); }
+        .btn-container { position: relative; width: 100%; height: 150px; z-index: 10; }
+        button {
+            padding: 15px 35px; font-size: 1.2rem; border-radius: 50px; border: none;
+            cursor: pointer; font-weight: 600; transition: 0.3s; position: absolute;
+        }
+        #yesBtn { background: #ff4d6d; color: white; left: calc(50% - 130px); top: 20px; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4); }
+        #noBtn { background: white; color: #7367f0; left: calc(50% + 20px); top: 20px; transition: all 0.2s ease; }
+        
+        /* Fast Floating Hearts for all pages */
+        .heart {
+            position: absolute; bottom: -50px;
+            animation: floatUp 4s infinite linear; z-index: 1; opacity: 0.8;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+        }
+
+        /* Emoji Shower Animation */
+        .emoji-blast {
+            position: fixed; bottom: -50px; font-size: 2.5rem;
+            animation: blast 2.5s forwards cubic-bezier(0.12, 0, 0.39, 0); z-index: 100;
+        }
+        @keyframes blast {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-800px) translateX(var(--dir)) rotate(20deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="bg-elements"></div>
+    <h1>Love Proposal 💜</h1>
+    <p style="z-index:10; position:relative;">Can I be your Pasandida Mard? 🌷</p>
+
+    <div class="btn-container">
+        <button id="yesBtn" onclick="celebrate()">Yes 💗</button>
+        <button id="noBtn" onmouseover="moveNo()">No 😜</button>
+    </div>
+
+    <script>
+        // Heart Background Logic (Common for all pages)
+        function createHearts() {
+            const container = document.getElementById('bg-elements');
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💗';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            heart.style.animationDuration = (Math.random() * 2 + 2) + 's'; // Fast speed
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+        setInterval(createHearts, 150); // Fast Pop-up
+
+        let noCount = 0;
+        function moveNo() {
+            const noBtn = document.getElementById('noBtn');
+            noCount++;
+            if (noCount <= 6) {
+                const x = Math.random() * (window.innerWidth - 150);
+                const y = Math.random() * (window.innerHeight - 150);
+                noBtn.style.left = x + 'px';
+                noBtn.style.top = y + 'px';
+            } else {
+                noBtn.style.display = 'none';
+            }
+        }
+
+        function celebrate() {
+            const emojis = ['🥳','🎊','🎉'];
+            for(let i=0; i<50; i++) { // Bohot saare emojis
+                setTimeout(() => {
+                    const e = document.createElement('div');
+                    e.className = 'emoji-blast';
+                    e.innerText = emojis[Math.floor(Math.random()*3)];
+                    const isLeft = Math.random() > 0.5;
+                    e.style.left = isLeft ? (Math.random() * 30) + 'vw' : (Math.random() * 30 + 70) + 'vw';
+                    e.style.setProperty('--dir', (isLeft ? 200 : -200) + 'px');
+                    document.body.appendChild(e);
+                    setTimeout(() => e.remove(), 2500);
+                }, i * 50);
+            }
+            setTimeout(() => { window.location.href = 'page2.html'; }, 3000);
+        }
+    </script>
+</body>
+</html>
