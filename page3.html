@@ -4,80 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prem Patra 💌</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            margin: 0; padding: 20px; min-height: 100vh;
-            display: flex; justify-content: center; align-items: center;
+            margin: 0; 
+            padding: 40px 20px; /* Thoda extra space top/bottom mein */
+            min-height: 100vh;
+            display: flex; 
+            justify-content: center; 
+            align-items: flex-start; /* Taaki scroll upar se shuru ho */
             background: linear-gradient(135deg, #ce9ffc 0%, #7367f0 100%);
             font-family: 'Poppins', sans-serif; 
-            overflow: hidden; /* Scrollbar hatane ke liye */
+            overflow-y: auto; /* Scrolling enable kar di */
         }
 
-        /* Fixed Heart Styling */
+        /* Fixed Heart Styling with Color */
         .heart { 
-            position: fixed; /* Absolute ki jagah fixed behtar hai background ke liye */
+            position: fixed;
             bottom: -50px; 
             animation: floatUp 4s infinite linear; 
             z-index: 1; 
-            opacity: 0.7; 
-            pointer-events: none; /* Mouse touch block na kare */
+            opacity: 0.8; 
+            color: #ff4d6d; /* Heart ka color deep pink */
+            text-shadow: 0 0 10px rgba(255, 77, 109, 0.5); /* Glow effect */
+            pointer-events: none;
         }
 
         @keyframes floatUp { 
             0% { transform: translateY(0) scale(0.8); opacity: 0; } 
-            20% { opacity: 0.8; }
+            20% { opacity: 1; }
             100% { transform: translateY(-110vh) scale(1.5); opacity: 0; } 
         }
 
         .letter-container {
             background: rgba(255, 255, 255, 0.95); 
             padding: 40px; 
-            border-radius: 20px;
-            max-width: 500px; 
-            width: 90%; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-radius: 25px;
+            max-width: 650px; /* Width thodi badhai taki lines sahi dikhein */
+            width: 95%; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
             position: relative; 
             z-index: 10; 
-            border-left: 8px solid #ff4d6d;
+            border-left: 10px solid #ff4d6d;
+            margin-bottom: 50px; /* Niche thoda gap */
         }
-        h2 { font-family: 'Pacifico', cursive; color: #7367f0; }
+
+        h2 { 
+            font-family: 'Pacifico', cursive; 
+            color: #7367f0; 
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+        }
+
+        .letter-content {
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-align: justify; /* Text lines barabar dikhengi */
+        }
+
+        .shayari-box {
+            background: rgba(115, 103, 240, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-style: italic;
+            border-left: 3px solid #7367f0;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-family: 'Pacifico', cursive;
+            color: #ff4d6d;
+            font-size: 1.4rem;
+            text-align: right;
+        }
+
+        /* Mobile specific fix */
+        @media (max-width: 600px) {
+            .letter-container { padding: 25px; }
+            h2 { font-size: 1.8rem; }
+            .letter-content { font-size: 1rem; }
+        }
     </style>
 </head>
 <body>
     <audio id="bgMusic" autoplay loop>
-        <source src="music.mp3" type="audio/mpeg"> </audio>
+        <source src="music2.mp3" type="audio/mpeg">
+    </audio>
 
     <div id="bg-hearts" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
 
     <div class="letter-container">
-        <h2>Meri Rasmalai,</h2>
-        <p>
-            Yahan tera love letter... ❤️
-        </p>
-        <div class="signature">Always Yours,<br>Your Tulip 🌷</div>
+        <h2>Meri Rasmalai🎀💗🧿,</h2>
+        
+        <div class="letter-content">
+            Dekhye Madam ab aapne yahan tak khol liya hai, toh aapko pata hi hoga ki mujhe aapse ishq ho gaya hai. Aapko jitna pata hai, usse kahin zyada pyaar karta hoon aapse. Irada toh aapse dosti ka tha, par pata nahi kab pyaar kar betha 😋 agar shayri mai kahu toh kush iss tarah hoga:
+            
+            <div class="shayari-box">
+                Tumhe chahne ki aadat si ho gayi,<br>
+                Maaf karna, thodi himaqat ho gayi.<br>
+                Niyat toh tumse dosti ki thi,<br>
+                Magar khamkha, tumse mohabbat ho gayi.
+            </div>
+
+            I have passed by many eyes, but I only got lost in yours. How do I say I miss you in a way that will make your heart ache as much as mine? If you asked me how many times you came to my mind, I would say once—because you came and never left. <br><br>
+            
+            I must be with you. I want nothing else in this life than to be with you, to listen to your beautiful voice, to admire your beauty, to argue with you, and to laugh with you. Wouldn't it be wonderful to be together, really together? <br><br>
+            
+            I cannot imagine a life without loving you. With a depth and passion which I have felt for no one else in this life. I am glad, I love you, I love youuu...<br><br>
+            
+            Dekh baat toh chhoti si hai, par kehna zaroori hai—ye zindagi toh meri hai, par tumhara rehna zaroori hai yaar.... samjhe na !! <br><br>
+            
+            Maine tumhe ek din tumhari ek picture bheji thi and kaha tha ki <i>"This is the 2nd most beautiful and cutest picture I have ever seen"</i>, toh na toh tune pucha tha ki which is the 1st one and main bhi batana bhul gaya. Sach kahu toh... <b>Your picture in my eyes is the most beautiful and cutest picture in the whole universe. I Love you Adyaa💗🧿🎀</b>
+        </div>
+
+        <div class="signature">Always Yours,<br>Your Tulip🌷/Nenito😊</div>
     </div>
 
     <script>
         window.addEventListener('load', () => {
             const audio = document.getElementById('bgMusic');
-            audio.play().catch(() => {
-                console.log("Autoplay blocked");
-            });
+            audio.play().catch(() => console.log("Autoplay blocked"));
         });
 
         function createHearts() {
             const container = document.getElementById('bg-hearts');
             const heart = document.createElement('div');
             heart.className = 'heart';
-            heart.innerHTML = '💝';
+            heart.innerHTML = '💝'; 
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = (Math.random() * 20 + 20) + 'px'; // Random size
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
             heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
             container.appendChild(heart);
             setTimeout(() => heart.remove(), 4000);
         }
-        setInterval(createHearts, 150);
+        setInterval(createHearts, 180);
     </script>
 </body>
 </html>
