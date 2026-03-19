@@ -82,7 +82,7 @@
 
 <!-- AUDIO -->
 <audio id="loveAudio" loop autoplay>
-    <source src="music.mp3" type="audio/mpeg">
+    <source src="music2.mp3" type="audio/mpeg">
 </audio>
 
 <div class="gallery">
@@ -120,7 +120,7 @@ setInterval(() => {
     const h = document.createElement('div');
     h.className = 'heart';
     h.innerHTML = '💜';
-    h.style.left = Math.random() * 100 + 'vw';
+    h.style.fontSize = (Math.random() * 40 + 30) + 'px';
     document.getElementById('bg-hearts').appendChild(h);
     setTimeout(() => h.remove(), 4000);
 }, 200);
