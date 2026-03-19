@@ -15,12 +15,6 @@
             color: white;
             padding: 20px;
             overflow-x: hidden;
-            opacity: 0;
-            animation: fadeIn 1.5s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
         }
 
         .gallery img {
@@ -31,11 +25,6 @@
             border-radius: 20px;
             margin: 10px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            transition: 0.4s;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.08);
         }
 
         .shayari {
@@ -89,76 +78,89 @@
 
 <body>
 
-    <div id="bg-hearts"></div>
+<div id="bg-hearts"></div>
 
-    <audio id="loveAudio" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
+<!-- AUDIO -->
+<audio id="loveAudio" loop autoplay>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-    <div class="gallery">
-        <img src="photo1.jpg">
-        <img src="photo2.jpg">
-    </div>
+<div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+</div>
 
-    <div class="shayari" id="shayariText"></div>
+<div class="shayari" id="shayariText"></div>
 
-    <button class="next-btn" onclick="blastTulips()">
-        Click to read something special 🌷💌
-    </button>
+<button class="next-btn" onclick="blastTulips()">
+    Click to read something special 🌷💌
+</button>
 
-    <script>
-        // AUTO MUSIC
-        window.addEventListener("load", () => {
-            if (localStorage.getItem("playMusic") === "true") {
-                document.getElementById("loveAudio").play().catch(() => {});
-            }
-        });
+<script>
+// AUTO MUSIC FIX
+window.onload = () => {
+    if (localStorage.getItem("playMusic") === "true") {
 
-        // Hearts
-        setInterval(() => {
-            const h = document.createElement('div');
-            h.className = 'heart';
-            h.innerHTML = '💜';
-            h.style.left = Math.random() * 100 + 'vw';
-            document.getElementById('bg-hearts').appendChild(h);
-            setTimeout(() => h.remove(), 4000);
-        }, 200);
+        const audio = document.getElementById("loveAudio");
 
-        // Shayari typing
-        const text = `Khuda ne jab fursat mai tughe banaya hoga,🎀
+        let playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                setTimeout(() => {
+                    audio.play().catch(() => {});
+                }, 500);
+            });
+        }
+    }
+};
+
+// HEARTS
+setInterval(() => {
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.innerHTML = '💜';
+    h.style.left = Math.random() * 100 + 'vw';
+    document.getElementById('bg-hearts').appendChild(h);
+    setTimeout(() => h.remove(), 4000);
+}, 200);
+
+// SHAYARI TYPE EFFECT
+const text = `Khuda ne jab fursat mai tughe banaya hoga,🎀
 Ek surror sa, uske dil pe chaya hoga,😊
 Teri ankho👀 mai samandar🌊,
 Aadaau mai puri kayinat ke najare bharke🌏,
 Sach kehta hu👉🏼👈🏼, tughe dharti pe bhejne se phele,
 Khuda ka bhi emann, dagmagaya hoga🤭💗💝🧿✨`;
 
-        let i = 0;
-        function typeEffect() {
-            if (i < text.length) {
-                document.getElementById("shayariText").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeEffect, 40);
-            }
-        }
-        typeEffect();
+let i = 0;
+function typeEffect() {
+    if (i < text.length) {
+        document.getElementById("shayariText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 40);
+    }
+}
+typeEffect();
 
-        function blastTulips() {
-            for(let i=0; i<40; i++) {
-                setTimeout(() => {
-                    const t = document.createElement('div');
-                    t.className = 'tulip-pop';
-                    t.innerText = Math.random() > 0.5 ? '💝' : '🌷';
-                    t.style.left = Math.random()*100 + 'vw';
-                    document.body.appendChild(t);
-                    setTimeout(() => t.remove(), 2500);
-                }, i * 60);
-            }
+// NEXT PAGE
+function blastTulips() {
+    for(let i=0; i<40; i++) {
+        setTimeout(() => {
+            const t = document.createElement('div');
+            t.className = 'tulip-pop';
+            t.innerText = Math.random() > 0.5 ? '💝' : '🌷';
+            t.style.left = Math.random()*100 + 'vw';
+            document.body.appendChild(t);
+            setTimeout(() => t.remove(), 2500);
+        }, i * 60);
+    }
 
-            setTimeout(() => {
-                window.location.href = 'page3.html';
-            }, 3000);
-        }
-    </script>
+    setTimeout(() => {
+        window.location.href = 'page3.html';
+    }, 3000);
+}
+</script>
 
 </body>
 </html>
